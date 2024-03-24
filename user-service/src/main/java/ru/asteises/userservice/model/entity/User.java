@@ -1,6 +1,5 @@
 package ru.asteises.userservice.model.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -26,5 +25,6 @@ public class User {
     private String username;
     private String password;
     @ManyToMany
-    private Set<Role> role;
+    private Set<Role> roles;
+    private boolean deleted;
 }
