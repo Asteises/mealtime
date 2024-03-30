@@ -20,13 +20,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserJpaRepository userJpaRepository;
 
+    @Autowired
+    public UserDetailsServiceImpl(UserJpaRepository userJpaRepository) {
+        this.userJpaRepository = userJpaRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Optional<User> user = userJpaRepository.findByUsernameAndDeletedFalse(username);
         log.info("user: {}", user);
-        return user.map(u -> new UserDetailsImpl())
-                .orElseThrow(
+        log.info("user roles: {}", user.get().getRoles());
+        return user.orElseThrow(
                         () -> new UsernameNotFoundException(String.format("User with username: %s not found", username)));
     }
 }

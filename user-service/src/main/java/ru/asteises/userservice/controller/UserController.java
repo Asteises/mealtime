@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> getUsersPage() {
         return new ResponseEntity<>("Welcome to ONLY users page :)", HttpStatus.OK);
     }
@@ -31,6 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<String> getPageForAll() {
         return new ResponseEntity<>("Welcome to page for all :)", HttpStatus.OK);
     }

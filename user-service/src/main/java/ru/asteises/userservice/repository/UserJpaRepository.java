@@ -13,6 +13,7 @@ public interface UserJpaRepository extends JpaRepository<User, UUID> {
 
     @Query("""
             select u from User as u
+            left join fetch u.roles
             where u.username = :username
             and u.deleted = false
             """)
