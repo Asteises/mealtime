@@ -1,0 +1,29 @@
+logging:
+  level:
+    root: info
+
+server:
+  port: 8886
+
+spring:
+  application:
+    name:
+      recipe-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/mealtime-recipe-service-db
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: off
+  sql:
+    init:
+      mode: always
+  mvc:
+    format:
+      date-time: dd-MM-yyyy HH:mm:ss
+  web:
+    resources:
+      static-locations: classpath:/resources, classpath:/resources/**, classpath:/db/
